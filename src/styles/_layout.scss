@@ -1,0 +1,34 @@
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: $clr-blue;
+
+  @include for-size(tablet-landscape-up) {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 1.5rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 5rem 0;
+  padding-bottom: 6rem;
+  background: $clr-white;
+  position: relative;
+
+  @include for-size(desktop-up) {
+    width: 75%;
+    height: 85%;
+  }
+}

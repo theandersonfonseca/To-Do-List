@@ -1,0 +1,298 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 20rem;
+  width: 100%;
+  max-width: 100%;
+  background: $clr-gray-light;
+
+  &__title {
+    padding: 1.5rem;
+    font-size: 5rem;
+    font-family: 'Roboto Mono', monospace;
+    color: $clr-dark;
+  }
+}
+
+.controls {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: $clr-gray-light;
+  border-bottom: solid 0.2rem $clr-gray-light;
+
+  @include for-size(tablet-landscape-up) {
+    flex-direction: initial;
+    height: 10rem;
+  }
+
+  &__lists {
+    margin-top: 3rem;
+
+    @include for-size(tablet-landscape-up) {
+      margin-top: 0;
+    }
+  }
+
+  &__tasks,
+  &__lists {
+    display: flex;
+    max-width: 100%;
+  }
+
+  &__lists-controls {
+    display: flex;
+    max-width: 100%;
+
+    @include for-size(phone-only) {
+      flex-direction: column;
+    }
+  }
+
+  &__input,
+  &__select,
+  &__input-new-list {
+    padding: 1rem;
+    outline: none;
+    max-width: 100%;
+    border: none;
+    background: inherit;
+    border-bottom: .2rem solid $clr-dark;
+  }
+
+  &__input-new-list {
+    width: 25rem;
+  }
+
+  &__input {
+    width: 35rem;
+  }
+
+  &__select {
+    width: 25rem;
+    color: $clr-dark;
+    font-size: 1.8rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__option {
+    padding: 1rem;
+    background: $clr-gray-light;
+  }
+
+  &__button {
+    margin-left: 1.5rem;
+    padding: 0.8rem 1rem;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: $clr-white;
+    font-weight: 600;
+    transition: 0.4s;
+    border-radius: 0.4rem;
+
+    &--task {
+      background: $clr-green;
+    }
+
+    &--list {
+      background: $clr-dark;
+    }
+
+    &--new-list {
+      background: $clr-dark;
+    }
+
+    &--cancel-new-list {
+      background: $clr-red;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &--list,
+    &--cancel-new-list,
+    &--new-list {
+
+      @include for-size(phone-only) {
+        margin-left: 0;
+        margin-top: 1.5rem;
+      }
+    }
+  }
+
+  &__icon-plus {
+    pointer-events: none;
+  }
+
+  &__new-list {
+    display: none;
+  }
+
+  &__lists--new-task {
+    .controls__new-list {
+      display: flex;
+      max-width: 100%;
+
+      @include for-size(phone-only) {
+        flex-direction: column;
+      }
+    }
+
+    .controls__lists-controls {
+      display: none;
+    }
+  }
+
+  &__tasks-edit {
+    display: flex;
+    align-self: center;
+    height: 5.6rem;
+    max-width: 100%;
+    color: rgb(54, 112, 199);
+  }
+
+  &__input-edit {
+    border: none;
+    outline: none;
+    width: 55rem;
+    padding: 0 1.5;
+    font-size: 1.6rem;
+  }
+}
+
+.tasks {
+  padding: 3rem;
+
+  @include for-size(phone-only) {
+    padding: 1.5rem;
+  }
+
+  @include for-size(tablet-landscape-up) {
+    height: 60rem;
+    overflow-y: scroll;
+  }
+
+  &__task {
+    display: flex;
+    align-items: center;
+    border-bottom: solid 0.1rem $clr-gray-light;
+
+    & > * {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+  }
+
+  &__edit,
+  &__trash,
+  &__check {
+    cursor: pointer;
+    transition: 0.4s;
+  }
+
+  &__edit {
+    margin-left: 3rem;
+    color: $clr-blue;
+  }
+
+  &__trash {
+    margin-left: 1.5rem;
+    color: $clr-red;
+  }
+
+  &__check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 2rem;
+    min-height: 2rem;
+    border: solid 0.1rem $clr-dark;
+    border-radius: 50%;
+  }
+
+  &__check-icon {
+    display: none;
+    max-width: 100%;
+    color: $clr-white;
+    pointer-events: none;
+  }
+
+  &__description {
+    display: inline-block;
+    margin-left: 3rem;
+    color: $clr-dark;
+    word-break: break-all;
+
+    @include for-size(phone-only) {
+      margin-left: 1.5rem;
+    }
+  }
+
+  &__task--complete {
+    .tasks__check {
+      border: none;
+      background: $clr-green;
+    }
+
+    .tasks__check-icon {
+      display: block;
+      color: $clr-white;
+    }
+
+    .tasks__description {
+      text-decoration: line-through;
+      color: $clr-gray;
+    }
+
+    .tasks__edit {
+      display: none;
+    }
+
+    .tasks__trash {
+      margin-left: 3rem;
+    }
+  }
+}
+
+.remove-controls {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+
+  &__remove-complete,
+  &__remove-list {
+    border: none;
+    background: none;
+    outline: none;
+    color: $clr-red;
+    cursor: pointer;
+    transition: 0.4s;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+  }
+
+  &__remove-list {
+    margin-left: 3rem;
+  }
+
+  &--default-list {
+    .remove-controls__remove-list {
+      display: none;
+    }
+  }
+}
