@@ -6,8 +6,7 @@ body {
   flex-direction: column;
   background: $clr-blue;
 
-  @include for-size(tablet-landscape-up) {
-    height: 100vh;
+  @include for-size(desktop-up) {
     overflow: hidden;
   }
 }
